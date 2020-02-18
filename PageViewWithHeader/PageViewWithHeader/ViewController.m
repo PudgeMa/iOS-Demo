@@ -7,25 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <UIKit/UIGestureRecognizerSubclass.h>
-
-@interface MyView : UIView
-
-@property (assign, nonatomic) UIView *fakeParent;
-
-@end
-
-@implementation MyView
-
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    return [super hitTest:point withEvent:event];
-}
-
-- (UIView *)_actingParentViewForGestureRecognizers {
-    return self.fakeParent;
-}
-
-@end
+#import "MyPageHeaderView.h"
 
 @interface ViewController () <UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
@@ -33,7 +15,7 @@
 @property (strong, nonatomic) UIScrollView *page1;
 @property (strong, nonatomic) UIScrollView *page2;
 
-@property (strong, nonatomic) MyView *headerView;
+@property (strong, nonatomic) MyPageHeaderView *headerView;
 
 @end
 
@@ -57,7 +39,9 @@
     self.pageScrollView = horizontalScrollView;
     /* ---- Page 1 */
     UIScrollView *viewInHorizontalView1 = [[UIScrollView alloc] initWithFrame:CGRectOffset(screenFrame, 0, 0)];
-    viewInHorizontalView1.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    if (@available(iOS 11.0, *)) {
+        viewInHorizontalView1.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
     viewInHorizontalView1.contentSize = CGSizeMake(screenWidth, screenHeight * 1.3);
     viewInHorizontalView1.showsVerticalScrollIndicator = NO;
     viewInHorizontalView1.contentInset = UIEdgeInsetsMake(topHeaderHeight, 0, 0, 0);
@@ -69,7 +53,9 @@
     self.page1 = viewInHorizontalView1;
     /* ---- Page 2 */
     UIScrollView *viewInHorizontalView2 = [[UIScrollView alloc] initWithFrame:CGRectOffset(screenFrame, screenWidth, 0)];
-    viewInHorizontalView2.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    if (@available(iOS 11.0, *)) {
+        viewInHorizontalView2.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
     viewInHorizontalView2.contentSize = CGSizeMake(screenWidth, screenHeight * 1.3);
     viewInHorizontalView2.showsVerticalScrollIndicator = NO;
     viewInHorizontalView2.contentInset = UIEdgeInsetsMake(topHeaderHeight, 0, 0, 0);
@@ -81,9 +67,9 @@
     [self.view addSubview:horizontalScrollView];
     self.page2 = viewInHorizontalView2;
     /* Header View */
-    MyView *headerView = [[MyView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, topHeaderHeight)];
+    MyPageHeaderView *headerView = [[MyPageHeaderView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, topHeaderHeight)];
     headerView.backgroundColor = [UIColor.redColor colorWithAlphaComponent:0.5];
-    headerView.fakeParent = viewInHorizontalView1;
+    headerView.actingParentView = viewInHorizontalView1;
     [self.view addSubview:headerView];
     self.headerView = headerView;
     /* Diasble Horizontal Gesture At Header View */
@@ -114,9 +100,9 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (scrollView.contentOffset.x < CGRectGetMaxX(self.page1.bounds)) {
-        self.headerView.fakeParent = self.page1;
+        self.headerView.actingParentView = self.page1;
     } else {
-        self.headerView.fakeParent = self.page2;
+        self.headerView.actingParentView = self.page2;
     }
 }
 

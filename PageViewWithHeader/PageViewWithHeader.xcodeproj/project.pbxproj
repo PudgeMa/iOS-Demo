@@ -12,6 +12,7 @@
 		756C714823EFF8BF0034C179 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 756C714723EFF8BF0034C179 /* Assets.xcassets */; };
 		756C714B23EFF8BF0034C179 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756C714923EFF8BF0034C179 /* LaunchScreen.storyboard */; };
 		756C714E23EFF8BF0034C179 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 756C714D23EFF8BF0034C179 /* main.m */; };
+		75964DF923FC2017008AFC30 /* MyPageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75964DF823FC2017008AFC30 /* MyPageHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,8 @@
 		756C714A23EFF8BF0034C179 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		756C714C23EFF8BF0034C179 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		756C714D23EFF8BF0034C179 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		75964DF723FC2017008AFC30 /* MyPageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPageHeaderView.h; sourceTree = "<group>"; };
+		75964DF823FC2017008AFC30 /* MyPageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPageHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			children = (
 				756C713B23EFF8BE0034C179 /* AppDelegate.h */,
 				756C713C23EFF8BE0034C179 /* AppDelegate.m */,
+				75964DF723FC2017008AFC30 /* MyPageHeaderView.h */,
+				75964DF823FC2017008AFC30 /* MyPageHeaderView.m */,
 				756C714123EFF8BE0034C179 /* ViewController.h */,
 				756C714223EFF8BE0034C179 /* ViewController.m */,
 				756C714723EFF8BF0034C179 /* Assets.xcassets */,
@@ -137,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75964DF923FC2017008AFC30 /* MyPageHeaderView.m in Sources */,
 				756C714323EFF8BE0034C179 /* ViewController.m in Sources */,
 				756C713D23EFF8BE0034C179 /* AppDelegate.m in Sources */,
 				756C714E23EFF8BF0034C179 /* main.m in Sources */,
@@ -272,7 +278,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				INFOPLIST_FILE = PageViewWithHeader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -288,7 +296,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				INFOPLIST_FILE = PageViewWithHeader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
